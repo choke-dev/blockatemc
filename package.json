@@ -15,6 +15,7 @@
 		"@iconify/json": "^2.2.289",
 		"@iconify/types": "^2.0.0",
 		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/adapter-netlify": "^4.4.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"autoprefixer": "^10.4.20",
@@ -35,7 +36,6 @@
 		"vite": "^5.4.11"
 	},
 	"dependencies": {
-		"@sentry/sveltekit": "^8.47.0",
-		"@sveltejs/adapter-cloudflare": "^5.0.0"
+		"@sentry/sveltekit": "^8.47.0"
 	}
 }
