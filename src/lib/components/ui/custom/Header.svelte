@@ -13,7 +13,7 @@
     <div class="flex-shrink-0">
       <a href="/">
         <img
-        src="/BlockateMCTitleText_NoMotto.png"
+        src="/BlockateMCLogo_Slanted.png"
         alt="BlockateMC Title"
         class="hidden md:block w-55 h-8"
       />
