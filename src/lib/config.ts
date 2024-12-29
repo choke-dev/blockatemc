@@ -1,0 +1,1 @@
+export const MINECRAFT_SERVER_IP = "mc.choke.dev";
