@@ -24,8 +24,10 @@
 	  <CopyToClipboard text={MINECRAFT_SERVER_IP} />
 	</div>
 
-	<div class="my-16 p-2 border rounded-lg w-auto">
-		<h1 class="font-bold text-2xl">Player list</h1>
+	<div class="my-16 p-2 border rounded-lg w-auto backdrop-blur-sm">
+		<div class="flex justify-between items-center">
+			<h1 class="font-bold text-2xl">Player list</h1>
+		</div>
 		<Separator class="my-2" />
 	
 		{#await data.serverInfoPromise}
@@ -33,41 +35,43 @@
 				<LucideLoaderCircle class="animate-spin size-8" />
 			</div>
 		{:then serverInfo}
-			{#if serverInfo}
+			{#if serverInfo.online}
 				
-				{#if serverInfo?.players?.sample && serverInfo.players.sample.length > 0}
-					<div class={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-${Math.ceil(serverInfo.players.sample.length / 8)} gap-2`}>
-						{#each serverInfo.players.sample as player}
+				{#if serverInfo.players.list && serverInfo.players.list.length > 0}
+					<div class={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-${Math.ceil(serverInfo.players.list.length / 8)} gap-2`}>
+						{#each serverInfo.players.list as player}
 							<div class="flex items-center gap-2">
 							  <img 
-								src={`https://api.mineatar.io/face/${player.id}`} 
+								src={`https://api.mineatar.io/face/${player.uuid}`} 
 								alt={`${player.name}'s head`} 
 								class="w-8 h-8"
 							  >
-							  <p>{player.name}</p>
+							  <p>{player.name_clean}</p>
 							</div>
 						{/each}
 					</div>
-				{:else if serverInfo?.players?.sample && serverInfo.players.sample === 0}
+				{:else if serverInfo.players.list && serverInfo.players.list.length === 0}
 					<div class="flex flex-col items-center justify-center">
 						<LineMdPersonOff class="size-8" />
 						<h2>There are currently no players online</h2>
 					</div>
-				{:else if !serverInfo?.players?.sample}
-				<div class="flex flex-col items-center justify-center">
-					<LineMdFileDocumentOff class="size-8" />
-					<h2>Server did not provide a player list</h2>
-				</div>
 				{/if}
 	
 			{:else}
+
 				<div class="flex flex-col items-center justify-center">
 					<LucideServerOff class="size-8" />
 					<h2>Server is offline</h2>
 				</div>
+
 			{/if}
 		{:catch error}
-			<p>Failed to load player list: {error.message}</p>
+
+			<div class="flex flex-col items-center justify-center">
+				<LucideServerOff class="size-8" />
+				<h2>Failed to retrieve player list</h2>
+			</div>
+
 		{/await}
 	</div>
 	
