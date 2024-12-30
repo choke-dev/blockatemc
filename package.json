@@ -37,6 +37,7 @@
 	},
 	"dependencies": {
 		"@sentry/sveltekit": "^8.47.0",
+		"@sveltejs/adapter-vercel": "^5.5.2",
 		"minecraftstatuspinger": "^1.2.1"
 	}
 }
