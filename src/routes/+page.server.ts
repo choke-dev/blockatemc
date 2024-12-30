@@ -27,6 +27,7 @@ const getServerInfo = async (): Promise<any> => {
     return data?.status;
 };
 
+export const ssr = false;
 export const load: PageServerLoad = async () => {
     return {
         serverInfoPromise: getServerInfo()
